@@ -67,3 +67,7 @@ match(Space, [Rel|PatArgs], OutPattern, Result) :- Term =.. [Space, Rel | PatArg
                                functor(Head, Space, Arity),
                                clause(Head, true),
                                Head =.. [Space | Pattern].
+
+%Count matches without materializing results:
+'match-count'(Space, Pattern, Count) :-
+    aggregate_all(count, match(Space, Pattern, _, _), Count).
